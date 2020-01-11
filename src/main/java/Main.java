@@ -3,6 +3,7 @@ public class Main {
 
         Querry querry = new Querry();
 //        querry.getUsers();
-        querry.getBooks();
+//        querry.getBooks();
+        querry.getUsersByName("Adam");
     }
 }
