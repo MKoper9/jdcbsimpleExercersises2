@@ -107,5 +107,39 @@ public class Querry {
         }
     }
 
+    public void updateNameAndSurnameById(Integer id, String name, String surname)
+    {
+        //UPDATE uzytkownik SET imie = "Michal", nazwisko = "Kulpa" WHERE id=1;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/ksiegarnia?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+            String user = "sdatest";
+            String password = "Start123!";
+            connection=DriverManager.getConnection(url,user,password);
+            preparedStatement=connection.prepareStatement("UPDATE uzytkownik SET imie = \""+name+"\",nazwisko=\""+surname+"\" WHERE id="+id);
+            preparedStatement.executeUpdate();
+
+        }catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
+        }finally {
+            try {
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
 
 }
